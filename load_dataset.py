@@ -70,7 +70,7 @@ def load_from_nx_graphs(dataset_dir: str, news_source: str, news_label: str):
     news_dataset_dir = "{}/{}_{}".format(dataset_dir, news_source, news_label)
 
     for sample_id in get_dataset_sample_ids(news_source, news_label, "data/sample_ids"):
-        with open("{}/{}.json".format(news_dataset_dir, sample_id)) as file:
+        with open("{}/{}".format(news_dataset_dir, sample_id)) as file:
             tweet_node_objects.append(construct_tweet_node_from_json(json.load(file)))
 
     return tweet_node_objects
@@ -82,7 +82,7 @@ def load_networkx_graphs(dataset_dir: str, news_source: str, news_label: str):
     news_samples = []
 
     for news_file in os.listdir(news_dataset_dir):
-        with open("{}/{}.json".format(news_dataset_dir, news_file)) as file:
+        with open("{}/{}".format(news_dataset_dir, news_file)) as file:
             news_samples.append(json_graph.tree_graph(json.load(file)))
 
     return news_samples
